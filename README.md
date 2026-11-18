@@ -72,3 +72,28 @@ Tizim muddati o'tgan mahsulotni joylashga ham, band qilishga ham yo'l qo'ymaydi 
 ## Stek
 
 Next.js (App Router), TypeScript, Tailwind CSS, lucide-react. Tashqi API kalit talab qilinmaydi.
+
+## Vercel'ga joylashtirish
+
+Loyiha Vercel uchun tayyor: maxsus `vercel.json`, environment o'zgaruvchilari yoki tashqi xizmatlar kerak emas (barcha ma'lumot `localStorage`da).
+
+1. <https://vercel.com/new> → **Import Git Repository** → `sadriddinjamolsadriziyoda-creator/Fotima`.
+2. Framework: **Next.js** (avtomatik aniqlanadi). Build command: `npm run build`. Output: `.next`. Root Directory: `./`.
+3. **Deploy**. Birinchi build ~1–2 daqiqa.
+
+Keyingi o'zgarishlar `main` branchiga push qilinishi bilan Vercel avtomatik qayta deploy qiladi:
+
+```bash
+git add -A
+git commit -m "feat: ..."
+git push
+```
+
+CLI orqali (ixtiyoriy):
+
+```bash
+npx vercel            # preview deploy
+npx vercel --prod     # production deploy
+```
+
+Eslatma: kam xotirali kompyuterda lokal build uchun `NEXT_BUILD_WORKERS=1 npm run build` ishlatish mumkin — bu faqat build worker'lari sonini cheklaydi, Vercel'ga ta'sir qilmaydi.
