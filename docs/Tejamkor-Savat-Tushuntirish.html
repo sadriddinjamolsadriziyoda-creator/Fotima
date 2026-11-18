@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8" />
+<title>Tejamkor Savat — Loyiha tushuntirishi</title>
+<style>
+  @page { size: A4; margin: 16mm 16mm 18mm 16mm; }
+  @page :first { margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: #20312a;
+    font-size: 10.5pt;
+    line-height: 1.55;
+  }
+  .cover {
+    height: 297mm;
+    background: linear-gradient(150deg,#0f3d2a 0%,#164b35 55%,#1d6b47 100%);
+    color: #fff;
+    padding: 38mm 20mm 20mm 20mm;
+    position: relative;
+    page-break-after: always;
+  }
+  .cover .leaf { font-size: 13pt; letter-spacing: .08em; text-transform: uppercase; color: #9fe0b8; font-weight: 700; }
+  .cover h1 { font-size: 40pt; line-height: 1.05; margin: 14mm 0 6mm 0; letter-spacing: -.02em; }
+  .cover h2 { font-size: 16pt; font-weight: 400; color: #d7f0e0; margin: 0 0 18mm 0; }
+  .cover .box {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 14px;
+    padding: 7mm 8mm;
+    max-width: 140mm;
+  }
+  .cover .box b { color: #ffe9a8; }
+  .cover .meta { position: absolute; bottom: 20mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; font-size: 9pt; color: #b9ddc8; border-top: 1px solid rgba(255,255,255,.25); padding-top: 5mm; }
+
+  h2.sec {
+    font-size: 17pt; color: #0f3d2a; margin: 0 0 5mm 0;
+    border-left: 5px solid #2fa36a; padding-left: 4mm; line-height: 1.2;
+  }
+  section { page-break-inside: auto; margin-bottom: 11mm; }
+  h3 { font-size: 11.5pt; color: #145c3c; margin: 6mm 0 2mm 0; }
+  p { margin: 0 0 3mm 0; }
+  ul, ol { margin: 2mm 0 4mm 0; padding-left: 6mm; }
+  li { margin-bottom: 1.5mm; }
+  b, strong { color: #0f3d2a; }
+  code { background: #edf5ef; border: 1px solid #d3e5d9; border-radius: 4px; padding: 1px 4px; font-family: Consolas, monospace; font-size: 9pt; color: #145c3c; }
+
+  .toc { background: #f4f8f5; border: 1px solid #d9e8de; border-radius: 10px; padding: 6mm 8mm; }
+  .toc a { color: #145c3c; text-decoration: none; display: block; padding: 1.2mm 0; }
+  .toc a span { color: #7d9c8a; display: inline-block; width: 9mm; }
+
+  .steps { display: flex; flex-direction: column; gap: 3mm; }
+  .step { display: flex; gap: 4mm; align-items: flex-start; background: #fff; border: 1px solid #dce9e0; border-left: 4px solid #2fa36a; border-radius: 8px; padding: 3.5mm 4mm; page-break-inside: avoid; }
+  .step .n { flex: 0 0 8mm; height: 8mm; border-radius: 50%; background: #164b35; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 10pt; }
+  .step .c { flex: 1; }
+  .step .c b { display: block; margin-bottom: 1mm; }
+
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0 5mm 0; font-size: 9.5pt; }
+  th { background: #164b35; color: #fff; text-align: left; padding: 2.5mm 3mm; font-weight: 600; }
+  td { padding: 2.5mm 3mm; border-bottom: 1px solid #e3eee7; vertical-align: top; }
+  tr:nth-child(even) td { background: #f8fbf9; }
+
+  .note, .warn, .good { border-radius: 8px; padding: 4mm 5mm; margin: 4mm 0; page-break-inside: avoid; }
+  .note { background: #eef6ff; border-left: 4px solid #3b82c4; }
+  .warn { background: #fff6e6; border-left: 4px solid #e2a12a; }
+  .good { background: #eef8f1; border-left: 4px solid #2fa36a; }
+  .note b { color: #1b5f9e; } .warn b { color: #9a6410; } .good b { color: #145c3c; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; }
+  .card { border: 1px solid #dce9e0; border-radius: 8px; padding: 4mm 5mm; background: #fbfdfb; page-break-inside: avoid; }
+  .card h4 { margin: 0 0 2mm 0; font-size: 10.5pt; color: #145c3c; }
+  .card p { margin: 0; font-size: 9.5pt; }
+
+  .flow { background: #0f3d2a; color: #d8f0e1; border-radius: 10px; padding: 5mm 6mm; text-align: center; font-size: 10pt; letter-spacing: .01em; page-break-inside: avoid; }
+  .flow b { color: #ffdf8a; }
+
+  .tree { background: #14251d; color: #d8f0e1; border-radius: 8px; padding: 5mm 6mm; font-family: Consolas, monospace; font-size: 8.7pt; line-height: 1.6; white-space: pre; page-break-inside: avoid; }
+  .tree .k { color: #8fd6a8; }
+
+  .footer { margin-top: 10mm; padding-top: 4mm; border-top: 1px solid #cfe0d5; font-size: 8.5pt; color: #6f8b7b; display: flex; justify-content: space-between; }
+  .pagebreak { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="leaf">Loyiha hujjati · Demo MVP</div>
+  <h1>Tejamkor<br>Savat</h1>
+  <h2>Sayt qanday ishlaydi? Maqsadi va nima uchun kerakligi</h2>
+  <div class="box">
+    <p><b>G'oya:</b> yaxshi ovqat isrof bo'lmasin — kafaning kun oxiridagi yaroqli taomlarini chegirma bilan topib, olib ketish.</p>
+    <p style="margin-bottom:0">Bu hujjat loyihaning maqsadi, ishlash tartibi, sahifalari, texnik tuzilmasidan qisqacha ma'lumot beradi.</p>
+  </div>
+  <div class="meta">
+    <span>Tejamkor Savat · Toshkent · o'zbekcha</span>
+    <span>2026-yil</span>
+  </div>
+</div>
+
+<section>
+  <h2 class="sec">Mundarija</h2>
+  <div class="toc">
+    <a href="#s1"><span>01</span> Loyiha nima? Asosiy maqsad</a>
+    <a href="#s2"><span>02</span> Qanday ishlaydi? (foydalanuvchi yo'li)</a>
+    <a href="#s3"><span>03</span> Sayt sahifalari va ularning vazifasi</a>
+    <a href="#s4"><span>04</span> Texnik tuzilma (qanday qurilgan)</a>
+    <a href="#s5"><span>05</span> Ma'lumotlar qayerdan keladi va saqlanadi</a>
+    <a href="#s6"><span>06</span> Nima uchun bu loyiha kerak?</a>
+    <a href="#s7"><span>07</span> Ishga tushirish va kelajak</a>
+  </div>
+</section>
+
+<section id="s1">
+  <h2 class="sec">01 · Loyiha nima? Asosiy maqsad</h2>
+  <p><b>Tejamkor Savat</b> — oziq-ovqat isrofini kamaytirishga qaratilgan <b>demo marketplace</b> (onlayn bozor) prototipi. U Toshkent shahri uchun mo'ljallangan bo'lib, restoran va kafelarning kun oxirida sotilmay qolgan, ammo <b>hali iste'molga yaroqli</b> mahsulotlarini arzon narxda xarid qilish imkonini beradi.</p>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>Mijoz uchun</h4>
+      <p>Sevimli taomlarini 50% gacha arzon olish, pul tejash va atrof-muhitga hissa qo'shish. Masalan: 60 000 so'm → 25 000 so'm.</p>
+    </div>
+    <div class="card">
+      <h4>Kafe uchun</h4>
+      <p>Sotilmay qolgan mahsulotni utilisatsiya qilish o'rniga undan qo'shimcha daromad olish va mijozlar bazasini kengaytirish.</p>
+    </div>
+    <div class="card">
+      <h4>Jamiyat uchun</h4>
+      <p>Oziq-ovqat chiqindilarini kamaytirish, resurslarning (suv, energiya, mehnat) behuda ketishining oldini olish.</p>
+    </div>
+    <div class="card">
+      <h4>Demo maqsad</h4>
+      <p>G'oyani hakamlar, investorlar yoki foydalanuvchilarga tez va ko'rgazmali namoyish etish uchun tayyorlangan to'liq ishchi prototip.</p>
+    </div>
+  </div>
+
+  <div class="warn">
+    <b>E'tibor bering:</b> bu to'liq demo. Barcha restoranlar, mahsulotlar, buyurtmalar, mijoz fikrlari va statistika <b>xayoliy</b>. Haqiqiy to'lov olinmaydi, kafe buyurtmani ko'rmaydi, hech qanday server yoki ma'lumotlar bazasi mavjud emas.
+  </div>
+</section>
+
+<section id="s2" class="pagebreak">
+  <h2 class="sec">02 · Qanday ishlaydi? (foydalanuvchi yo'li)</h2>
+  <div class="flow">Kafe e'lon joylaydi <b>→</b> Mijoz qidiradi <b>→</b> Savatga soladi <b>→</b> Band qiladi <b>→</b> Olib ketadi</div>
+
+  <div class="steps">
+    <div class="step"><div class="n">1</div><div class="c"><b>Kafe mahsulot joylaydi</b>Kun oxirida yaroqli, lekin sotilmay qolgan taomni chegirma narxi, miqdori, olib ketish muddati va saqlash shartlari bilan e'lon qiladi.</div></div>
+    <div class="step"><div class="n">2</div><div class="c"><b>Mijoz qidiradi va tanlaydi</b>Bosh sahifadagi qidiruv yoki <code>/explore</code> sahifasidagi filtrlar (kategoriya, tuman, narx, chegirma %) yordamida o'ziga mos taomni topadi. Muddati o'tgan mahsulotlar ko'rsatilmaydi.</div></div>
+    <div class="step"><div class="n">3</div><div class="c"><b>Savatga soladi</b>Mahsulot detalida tavsif, allergenlar, tayyorlangan vaqti va qancha vaqt qolganligi ko'rinadi. Savatda miqdorni o'zgartirish yoki o'chirish mumkin. Mavjud miqdordan ortiq qo'shishga yo'l qo'yilmaydi.</div></div>
+    <div class="step"><div class="n">4</div><div class="c"><b>Band qiladi (checkout)</b>Ism, telefon (+998 XX XXX XXX XX formatida tekshiriladi) va olib ketish vaqti kiritiladi. Vaqt slotlari mahsulot muddati ichida 15 daqiqali oraliklarda avtomatik taklif etiladi. Natijada <code>TS-XXXXXX</code> buyurtma raqami beriladi.</div></div>
+    <div class="step"><div class="n">5</div><div class="c"><b>Olib ketadi</b>Buyurtma holati: <b>Band qilindi → Tayyor → Olib ketildi</b>. Agar bekor qilinsa, mahsulot miqdori qayta tiklanadi. Demo rejimda to'lov yo'q, buyurtma faqat brauzerda saqlanadi.</div></div>
+  </div>
+
+  <h3>Hamkor va admin panellari</h3>
+  <p><b>Hamkor kabineti (<code>/partner</code>):</b> tanlangan restoranning buyurtmalari, taxminiy daromadi (10% platforma komissiyasi misoli), faol e'lonlari; mahsulot qo'shish/tahrirlash, mavjudlikni yoqish/o'chirish.</p>
+  <p><b>Admin panel (<code>/admin</code>):</b> umumiy statistika (mijozlar, restoranlar, faol e'lonlar, rezervatsiyalar, demo aylanma), barcha buyurtmalar va restoranlarni boshqarish.</p>
+</section>
+
+<section id="s3">
+  <h2 class="sec">03 · Sayt sahifalari va ularning vazifasi</h2>
+  <table>
+    <thead><tr><th>Manzil</th><th>Sahifa</th><th>Vazifasi</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td>Bosh sahifa</td><td>Hero blok, qidiruv + tuman, bugungi chegirmalar, kategoriyalar, "qanday ishlaydi", ta'sir statistikasi, hamkorlar, fikrlar.</td></tr>
+      <tr><td><code>/explore</code></td><td>Chegirmalar</td><td>Barcha mahsulotlar va filtrlar: qidiruv, kategoriya, tuman, narx, chegirma foizi, saralash.</td></tr>
+      <tr><td><code>/product/[id]</code></td><td>Mahsulot detali</td><td>To'liq ma'lumot: tavsif, allergenlar, saqlash, tayyorlangan vaqti, qolgan vaqt, savatga qo'shish.</td></tr>
+      <tr><td><code>/cart</code></td><td>Savat</td><td>Tanlangan mahsulotlar, miqdor, jami summa va tejash hisobi.</td></tr>
+      <tr><td><code>/checkout</code></td><td>Rasmiylashtirish</td><td>Mijoz ma'lumotlari, olib ketish vaqti, buyurtma raqami.</td></tr>
+      <tr><td><code>/orders</code></td><td>Buyurtmalarim</td><td>Buyurtmalar ro'yxati, holatlar, bekor qilish.</td></tr>
+      <tr><td><code>/partner/*</code></td><td>Hamkor kabineti</td><td>Bosh sahifa, buyurtmalar, mahsulotlar, profil.</td></tr>
+      <tr><td><code>/admin/*</code></td><td>Admin panel</td><td>Umumiy ko'rinish, mahsulotlar, restoranlar.</td></tr>
+      <tr><td><code>/about</code>, <code>/impact</code>, <code>/safety</code>, <code>/business-model</code>, <code>/marketing</code>, <code>/presentation</code>, <code>/speech</code></td><td>Kontent sahifalari</td><td>Loyiha haqida hikoya, ta'sir, xavfsizlik, biznes modeli va taqdimot materiallari.</td></tr>
+    </tbody>
+  </table>
+  <p>Interfeys <b>o'zbek, rus va ingliz</b> tillarida qisman tarjima qilingan (<code>src/lib/i18n.ts</code>). Til o'zgartirilganda sahifa til attributi ham yangilanadi.</p>
+</section>
+
+<section id="s4" class="pagebreak">
+  <h2 class="sec">04 · Texnik tuzilma (qanday qurilgan)</h2>
+  <table>
+    <thead><tr><th>Qism</th><th>Texnologiya / yechim</th></tr></thead>
+    <tbody>
+      <tr><td>Framework</td><td>Next.js 16 (App Router) + React 19 + TypeScript</td></tr>
+      <tr><td>Stillar</td><td>Tailwind CSS 4, Turbopack tezlashtirish; maxsus ranglar: forest, fresh, accent, cream</td></tr>
+      <tr><td>Ikonkalar</td><td>lucide-react</td></tr>
+      <tr><td>Holat boshqaruv</td><td>Bitta React Context (<code>useStore</code>) — butun ilovaning markaziy holati</td></tr>
+      <tr><td>Ma'lumotlar bazasi</td><td>Yo'q. Barcha ma'lumotlar brauzerning <code>localStorage</code>ida (<code>tejamkor:v1</code>)</td></tr>
+      <tr><td>Rasmlar</td><td>Real rasm yo'q — <code>FoodArt</code> komponenti kategoriyaga qarab SVG illyustratsiya chizadi</td></tr>
+      <tr><td>Vaqt</td><td>Mahsulot muddatlari joriy vaqtga nisbatan hisoblanadi; <code>now</code> har 30 soniyada yangilanadi</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Fayl tuzilmasi</h3>
+  <div class="tree"><span class="k">src/</span>
+├── <span class="k">app/</span>           → sahifalar (har papka = bitta manzil/route)
+│   ├── page.tsx, explore/, cart/, checkout/, orders/
+│   ├── product/[id]/  → dinamik mahsulot sahifasi
+│   ├── partner/, admin/
+│   └── about/, impact/, safety/, business-model/, ...
+├── <span class="k">components/</span>    → Header, Footer, ProductCard, FoodArt,
+│                      DashShell, ProductForm, StatCard, ui, ...
+└── <span class="k">lib/</span>
+    ├── store.tsx    → butun ilovaning "miyasi": holat + barcha amallar
+    ├── data.ts      → 5 restoran, 14 mahsulot, 5 demo buyurtma
+    ├── types.ts     → Product, Order, Restaurant, CartItem tiplari
+    ├── i18n.ts      → tarjimalar (uz / ru / en)
+    ├── format.ts    → so'm formati, chegirma %, vaqt hisoblash
+    └── status.ts    → buyurtma holatlari va ularning ranglari</div>
+
+  <h3>Asosiy ma'lumotlar modeli</h3>
+  <ul>
+    <li><b>Restaurant:</b> id, nomi, manzili, tumani, telefon, tavsif, tarif (Bepul/Premium).</li>
+    <li><b>Product:</b> id, nomi, tavsifi, kategoriyasi, restoranId, asl narxi, chegirma narxi, miqdori, mavjudligi, olib ketish muddati, tayyorlangan vaqti, saqlash sharti, allergenlar.</li>
+    <li><b>CartItem:</b> productId + quantity.</li>
+    <li><b>Order:</b> id, TS-raqami, mijoz ismi, telefon, olib ketish vaqti, elementlar, jami summa, holat, yaratilgan vaqti.</li>
+  </ul>
+</section>
+
+<section id="s5">
+  <h2 class="sec">05 · Ma'lumotlar qayerdan keladi va saqlanadi</h2>
+  <p><b>Generatsiya:</b> <code>src/lib/data.ts</code> faylida 5 ta xayoliy restoran va 14 ta mahsulot ro'yxati bor. <code>seedProducts()</code> funktsiyasi mahsulotlarning tayyorlangan va olib ketish muddati vaqtlarini <b>joriy vaqqa nisbatan</b> hisoblab beradi — shuning uchun demo har doim "yangi" ko'rinadi, vaqt o'tishi bilan muddat tugamaydi.</p>
+  <p><b>Saqlash:</b> ilk ochilishda <code>localStorage</code> bo'sh bo'lsa, demo ma'lumotlar yuklanadi. Keyingi o'zgartirishlar (savat, buyurtma, mahsulot tahriri, til) avtomatik ravishda brauzerga saqlanadi. Sahifani yangilashingizda hamma narsa o'z holatida qoladi.</p>
+  <p><b>Tiklash:</b> "Demo ma'lumotlarni tiklash" tugmasi barcha o'zgartirishlarni boshlang'ich holatga qaytaradi (til tanlovingiz saqlanib qoladi).</p>
+  <div class="good"><b>Qulaylik:</b> server talab qilinmaydi — saytni istalgan brauzerda ochib, to'liq sinab ko'rish mumkin. <b>Cheklov:</b> ma'lumotlar faqat shu brauzerda mavjud; boshqa qurilmada ko'rinmaydi va haqiqiy foydalanuvchilar o'rtasida almashilmaydi.</div>
+</section>
+
+<section id="s6" class="pagebreak">
+  <h2 class="sec">06 · Nima uchun bu loyiha kerak?</h2>
+  <ol>
+    <li><b>Ijtimoiy muammoni ko'rsatish.</b> Oziq-ovqat isrofi — global muammo. Loyiha uning oldini olishning oddiy va amaliy yo'lini namoyish etadi.</li>
+    <li><b>G'oyani tez namoyish qilish.</b> Hakaton, tanlov yoki investor uchun soatlab so'z o'rniga bosib ko'rish mumkin bo'lgan tayyor mahsulot.</li>
+    <li><b>To'liq ishchi prototip.</b> Faqat dizayn emas — qidiruv, filtrlar, savat, buyurtma, hamkor va admin panellari haqiqatan ishlaydi.</li>
+    <li><b>Kengaytirish uchun poydevor.</b> Keyinchalik haqiqiy qilish oson: <code>store.tsx</code> o'rniga API + ma'lumotlar bazasi, to'lov tizimi (Payme/Click), foydalanuvchi avtorizatsiyasi, real vaqt rejimi qo'shish mumkin.</li>
+    <li><b>Ta'limiy qiymat.</b> Next.js, React, TypeScript, Tailwind va holat boshqaruvni o'rganish uchun yaxshi namuna.</li>
+  </ol>
+</section>
+
+<section id="s7">
+  <h2 class="sec">07 · Ishga tushirish va kelajak</h2>
+  <h3>Qanday ishga tushiriladi</h3>
+  <p>Loyiha papkasida:</p>
+  <div class="tree">npm install     → bog'liqliklarni o'rnatish
+npm run dev     → ishlab chiqish serverini yoqish
+                → http://localhost:3000</div>
+  <p>Boshqa buyruqlar: <code>npm run build</code> (ishlab chiqarish yig'ish), <code>npm start</code> (tayyor versiyani ishga tushirish), <code>npm run lint</code> ( kod tekshirish).</p>
+
+  <h3>Kelajakda qo'shish mumkin bo'lganlar</h3>
+  <ul>
+    <li>Haqiqiy ma'lumotlar bazasi va server API (Supabase / PostgreSQL).</li>
+    <li>Foydalanuvchi ro'yxatdan o'tish va restoranlar uchun avtorizatsiya.</li>
+    <li>Haqiqiy to'lovlar (Payme, Click, UzCard) va buyurtma tasdiqlash.</li>
+    <li>Geolokatsiya yaqinidagi kafelar, xarita va navigatsiya.</li>
+    <li>Real vaqtli bildirishnomalar va buyurtma holatini kuzatish.</li>
+  </ul>
+
+  <div class="note"><b>Xulosa:</b> Tejamkor Savat — isrofga qarshi kurash g'oyasini namoyish etadigan, to'liq ishlaydigan, lekin butunlay xayoliy ma'lumotlarga asoslangan o'quv/taqdimot marketplace prototipi.</div>
+
+  <div class="footer"><span>Tejamkor Savat · Loyiha tushuntirishi</span><span>2026-yil · Demo MVP</span></div>
+</section>
+
+</body>
+</html>
